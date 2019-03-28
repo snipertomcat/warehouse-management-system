@@ -14,7 +14,7 @@ A WMS made using the Laravel PHP framework.
 
 # Example Usage
 
-Create an .env file with the following format:
+Create an .env file with the following format, with the DB and MAIL variables being the most important:
 
 ```
 APP_NAME=Laravel
@@ -53,7 +53,7 @@ PUSHER_APP_SECRET=
 
 ```
 
-Install dependencies via composer and npm. Use a MySQL server.
+Migrate tables with ```php artisan migrate```. Install dependencies via ```composer install``` and ```npm install```. Use a MySQL server.
 
 # Link
 
