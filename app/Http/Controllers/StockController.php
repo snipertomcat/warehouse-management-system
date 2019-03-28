@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Stock;
+use App\Stocks;
 use App\Products;
 
 class StockController extends Controller
@@ -23,11 +23,11 @@ class StockController extends Controller
 
         if (Products::where('id', '=', $request->get('product_id'))->count() > 0) {
             $this->validate($request, [
-                'product_id' => 'required|unique:stock',
+                'product_id' => 'required|unique:stocks',
                 'quantity' => 'required|integer|min:0'
             ]);
 
-            $stock = new Stock([
+            $stock = new Stocks([
                 'product_id' => $request->get('product_id'),
                 'quantity' => $request->get('quantity')
             ]);
@@ -40,18 +40,18 @@ class StockController extends Controller
 
     public function edit($id)
     {
-        $stock = Stock::find($id);
+        $stock = Stocks::find($id);
         return view('stock-edit', compact('stock'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'product_id' => 'required|unique:stock',
+            'product_id' => 'required|unique:stocks',
             'quantity' => 'required|integer|min:0'
         ]);
 
-        $stock = Stock::find($id);
+        $stock = Stocks::find($id);
         $stock->product_id = $request->get('product_id');
         $stock->quantity = $request->get('quantity');
 
@@ -61,7 +61,7 @@ class StockController extends Controller
 
     public function destroy($id)
     {
-        $stock = Stock::find($id);
+        $stock = Stocks::find($id);
         $stock->delete();
 
         return redirect('/stock')->with('success', 'Stock deleted!');
@@ -69,7 +69,7 @@ class StockController extends Controller
 
     public function index()
     {
-        $stock = Stock::all();
+        $stock = Stocks::all();
         return view('stock', compact('stock'));
     }
 }
