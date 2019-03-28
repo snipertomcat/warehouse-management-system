@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sales;
 use App\Deliveries;
-Use App\Stock;
+Use App\Stocks;
 Use App\Products;
 
 class DashboardController extends Controller
@@ -29,7 +29,7 @@ class DashboardController extends Controller
     {   
         $sales_data = Sales::with("sales")->count();
         $deliveries_data = Deliveries::with("deliveries")->count();
-        $stock_data = Stock::with("stock")->count();
+        $stock_data = Stocks::with("stock")->count();
         $products_data = Products::with("products")->count();
 
         return view("dashboard", compact("sales_data", "deliveries_data", "stock_data", "products_data"));
